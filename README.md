@@ -5,7 +5,7 @@ Any SAP/ABAP developer should be familiar  with this word. The basic functionali
 1. Given a word/phrase, it will return you all the occurrences of the given word/phrase.
 
 This feature is available almost on all IDE. This is an attempt to implement the same functionality.
-As you where, Inverted Index - Word level Inverted index will act as core component. 
+Inverted Index - Word level Inverted index will act as core component. 
 Read more about Inverted index here
 
 <https://en.wikipedia.org/wiki/Inverted_index>
