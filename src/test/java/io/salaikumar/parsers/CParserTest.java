@@ -9,7 +9,7 @@ import static org.junit.Assert.*;
 
 public class CParserTest {
 
-    /*5
+    /*
      * I have no idea what AST looks like.
      * First time actually. So, I just want to see it out.
      */
@@ -25,6 +25,6 @@ public class CParserTest {
         System.out.println(expected);
 
         IASTDeclaration[] declarations = expected.getDeclarations();
-            assertTrue(1==1);
+        assertTrue(1==1);
     }
 }

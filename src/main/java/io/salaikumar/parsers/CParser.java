@@ -1,6 +1,7 @@
 package io.salaikumar.parsers;
 
 
+import org.eclipse.cdt.core.dom.ast.IASTDeclaration;
 import org.eclipse.cdt.core.dom.ast.IASTTranslationUnit;
 import org.eclipse.cdt.core.dom.ast.gnu.cpp.GPPLanguage;
 import org.eclipse.cdt.core.model.CoreModel;
@@ -30,6 +31,14 @@ public class CParser {
         IncludeFileContentProvider emptyIncludes = IncludeFileContentProvider.getEmptyFilesProvider();
         int opts = 8;
         IASTTranslationUnit translationUnit = GPPLanguage.getDefault().getASTTranslationUnit(fileContent, info, emptyIncludes, null, opts, log);
+
+//      Get all Declarations. both active and inactive
+        IASTDeclaration[] allDeclarations = translationUnit.getDeclarations(true);
+
+//      I need to know what is inside allDeclarations.
+        for (IASTDeclaration current : allDeclarations){
+
+        }
         return translationUnit;
     }
 }
