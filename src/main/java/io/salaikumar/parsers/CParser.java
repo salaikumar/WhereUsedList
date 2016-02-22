@@ -1,17 +1,15 @@
 package io.salaikumar.parsers;
 
 
-import org.eclipse.cdt.core.dom.ast.IASTDeclaration;
 import org.eclipse.cdt.core.dom.ast.IASTTranslationUnit;
 import org.eclipse.cdt.core.dom.ast.gnu.cpp.GPPLanguage;
-import org.eclipse.cdt.core.model.CoreModel;
-import org.eclipse.cdt.core.model.ITranslationUnit;
 import org.eclipse.cdt.core.parser.*;
 import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.IPath;
-import org.eclipse.core.runtime.Path;
 
+import java.io.File;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /*
@@ -22,23 +20,62 @@ import java.util.Map;
  */
 public class CParser {
 
-    public static IASTTranslationUnit testITranslationUnit() throws CoreException {
-        FileContent fileContent = FileContent.createForExternalFileLocation("/home/salaikumar/WebApps/sourcecode/redis-unstable/src/sparkline.c");
+    private IASTTranslationUnit ast;
+
+    public CParser(File file){
+        try {
+            ast = getAST(file.getAbsolutePath());
+        } catch (CoreException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /*
+     *
+     */
+    public List getAllFunctions(){
+
+        return null;
+    }
+
+    public List getAllIncludes(){
+        return null;
+    }
+
+    /*
+     * Get all Declarations in the given file
+     */
+    public List getAllDeclarations(){
+        return Arrays.asList(ast.getDeclarations(true));
+    }
+
+    public void parse(){
+    }
+
+
+    /*
+     * The below code is kept in order to experiment with extracting data from Parser
+     */
+    private IASTTranslationUnit getAST(String filepath) throws CoreException {
+        FileContent fileContent = FileContent.createForExternalFileLocation(filepath);
         Map definedSymbols = new HashMap();
         String[] includePaths = new String[0];
         IScannerInfo info = new ScannerInfo(definedSymbols,includePaths);
         IParserLogService log = new DefaultLogService();
         IncludeFileContentProvider emptyIncludes = IncludeFileContentProvider.getEmptyFilesProvider();
         int opts = 8;
-        IASTTranslationUnit translationUnit = GPPLanguage.getDefault().getASTTranslationUnit(fileContent, info, emptyIncludes, null, opts, log);
+        IASTTranslationUnit translationUnit = GPPLanguage.getDefault().getASTTranslationUnit(fileContent,
+                                                info, emptyIncludes, null, opts, log);
 
-//      Get all Declarations. both active and inactive
-        IASTDeclaration[] allDeclarations = translationUnit.getDeclarations(true);
-
-//      I need to know what is inside allDeclarations.
-        for (IASTDeclaration current : allDeclarations){
-
-        }
+//        IASTDeclaration[] allDeclarations = translationUnit.getDeclarations(true);
+//
+////      I need to know what is inside allDeclarations.
+//        for (IASTDeclaration current : allDeclarations){
+//
+//        }
         return translationUnit;
     }
+
+
+
 }

@@ -16,15 +16,5 @@ public class CParserTest {
     @Test
     public void shouldTestAST(){
 
-        IASTTranslationUnit expected = null;
-        try {
-            expected = CParser.testITranslationUnit();
-        } catch (CoreException e) {
-            e.printStackTrace();
-        }
-        System.out.println(expected);
-
-        IASTDeclaration[] declarations = expected.getDeclarations();
-        assertTrue(1==1);
     }
 }
